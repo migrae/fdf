@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 08:20:06 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/23 14:17:24 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:17:12 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	prep_coords(int fd, t_data *data)
 		line = get_next_line(fd);
 		j++;
 	}
-	/* free(line); */
-	data->map.points[data->map.pixel] = NULL;
+	data->map.points[data->map.pixel + 1] = NULL;
 }
 
 int	get_matrix(char *filename, t_data *data)
@@ -92,7 +91,7 @@ int	get_matrix(char *filename, t_data *data)
 		finish(data, 0);
 	}
 	data->map.points = ft_calloc(data->map.height * data->map.width,
-			sizeof (t_coords*));
+			sizeof (t_coords*) + 1);
 	if (!data->map.points)
 		finish(data, 0);
 	prep_coords(fd, data);
