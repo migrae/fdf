@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:53:49 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/23 09:54:01 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:44:55 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	init_data(t_data *data, char *filename)
 {
+	printf("Start INIT\n");
+	data->map.pixel = 0;
 	ft_map_reader(data, filename);
 	data->factor = 25;
 	data->map.z_height = 5;
 	data->offset_x = 0;
 	data->offset_y = 0;
+	printf("End INIT\n");
 }
 
 int32_t	main(int argc, char **argv)
@@ -29,19 +32,19 @@ int32_t	main(int argc, char **argv)
 	data = ft_calloc(sizeof(t_data), 1);
 	if (!data)
 		return (EXIT_FAILURE);
-	data->map.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
+	data->map.mlx = mlx_init(WIDTH, HEIGHT, "FdF", true);
 	if (!data->map.mlx)
-	{
-		free(data);
-		exit(EXIT_FAILURE);
-	}
+		return (free(data), EXIT_FAILURE);
 	init_data(data, argv[1]);
 	data->map.image = mlx_new_image(data->map.mlx, WIDTH, HEIGHT);
+	if (!data->map.image)
+		return (free_data(data), EXIT_FAILURE);
 	draw_grid(data);
 	mlx_image_to_window(data->map.mlx, data->map.image, 0, 0);
 	mlx_loop_hook(data->map.mlx, &keys, &data->map);
 	mlx_loop(data->map.mlx);
-	finish(data);
-	/* system("leaks FDF"); */
+	mlx_delete_image(data->map.mlx, data->map.image);
+	mlx_terminate(data->map.mlx);
+	free_data(data);
 	return (EXIT_SUCCESS);
 }
