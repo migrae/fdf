@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:17:54 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/23 09:51:44 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:27:55 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_data
 
 void		ft_map_reader(t_data *data, char *filename);
 int			get_map_size(char *filename, t_data *data);
+void		write_coords(char *line, int j, t_data *data);
+void		prep_coords(int fd, t_data *data);
 int			get_matrix(char *filename, t_data *data);
 
 void		draw_grid(t_data *data);
@@ -61,12 +63,11 @@ void		draw_pixel(t_map *map, int x, int y, uint32_t color);
 t_coords	update_points(t_coords point, t_data *data);
 void		draw_line(t_map map, t_coords start, t_coords end);
 
-void		finish(t_data *data);
 void		keys(void *in);
 
-void		free_map(t_map *map);
+void		free_data(t_data *data);
 void		free_temp(char **temp);
-void		abort_fdf(t_data *data);
+void		finish(t_data *data, int e);
 
 void		edit_factor(int key, t_data *data);
 void		move(int key, t_data *data);
