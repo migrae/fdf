@@ -6,7 +6,7 @@
 #    By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 16:22:03 by mgraefen          #+#    #+#              #
-#    Updated: 2023/01/23 16:23:15 by mgraefen         ###   ########.fr        #
+#    Updated: 2023/01/23 16:37:33 by mgraefen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,12 +43,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(LIBFT):
-	@git submodule init
-	@git submodule update
+	@git submodule init Libft
+	@git submodule update Libft
 	@cd libft && make && make clean
 
 $(MLX42):
-	@if [ ! -d "MLX42" ]; then git clone https://github.com/codam-coding-college/MLX42.git; fi
+	@git submodule init MLX42
+	@git submodule update MLX42
 	@cd MLX42 && make
 
 clean:
