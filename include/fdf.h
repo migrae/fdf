@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:17:54 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/23 14:27:55 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:20:00 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ typedef struct s_data
 	int		factor;
 	int		offset_x;
 	int		offset_y;
+	int		x;
+	int		y;
+	double	x_rotate;
+	double	y_rotate;
+	double	z_rotate;
 }			t_data;
 
 void		ft_map_reader(t_data *data, char *filename);
@@ -72,5 +77,11 @@ void		finish(t_data *data, int e);
 void		edit_factor(int key, t_data *data);
 void		move(int key, t_data *data);
 void		edit_z_height(int key, t_data *data);
+
+t_coords	rotate_x(t_coords point, double x_rotate);
+t_coords	rotate_y(t_coords point, double y_rotate);
+t_coords	rotate_z(t_coords point, double z_rotate);
+
+void		mouse_drag(t_data *data);
 
 #endif

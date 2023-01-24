@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:53:49 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/23 15:16:40 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:08:48 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	init_data(t_data *data, char *filename)
 	data->map.z_height = 5;
 	data->offset_x = 0;
 	data->offset_y = 0;
+	data->x_rotate = 0;
+	data->y_rotate = 0;
+	data->z_rotate = 0;
+	data->x = 0;
+	data->y = 0;
 }
 
 int32_t	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:21:20 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/23 15:08:03 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/01/24 10:48:46 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ t_coords	update_points(t_coords point, t_data *data)
 	point.z *= data->factor / data->map.z_height;
 	point.y -= (data->map.height * data->factor) / 2;
 	point.x -= (data->map.width * data->factor) / 2;
+	point = rotate_x(point, data->x_rotate);
+	point = rotate_y(point, data->y_rotate);
+	point = rotate_z(point, data->z_rotate);
 	point.x = (point.x - point.y) * cos(0.5265);
 	point.y = (-point.z + point.x + point.y) * sin(0.5265);
 	point.x += WIDTH / 2 + data->offset_x;

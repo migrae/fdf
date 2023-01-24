@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 10:31:47 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/23 14:18:49 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:03:17 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	keys(void *in)
 	t_data	*data;
 
 	data = (t_data *)in;
+	mouse_drag(data);
 	if (mlx_is_key_down(data->map.mlx, MLX_KEY_ESCAPE))
 		finish(data, 1);
 	if (mlx_is_key_down(data->map.mlx, MLX_KEY_DOWN))

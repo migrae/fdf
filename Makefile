@@ -6,7 +6,7 @@
 #    By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 16:22:03 by mgraefen          #+#    #+#              #
-#    Updated: 2023/01/23 16:37:33 by mgraefen         ###   ########.fr        #
+#    Updated: 2023/01/24 11:20:42 by mgraefen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRC 		= main.c \
 					utils.c \
 					camera.c \
 					keys.c \
+					mouse.c \
+					rotation.c \
 					map_reader.c
 
 SRC 		:= $(SRC:%=$(SRC_DIR)/%)
