@@ -6,11 +6,11 @@
 #    By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 16:22:03 by mgraefen          #+#    #+#              #
-#    Updated: 2023/01/24 11:20:42 by mgraefen         ###   ########.fr        #
+#    Updated: 2023/02/09 09:18:54 by mgraefen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= 	FDF
+NAME 		= 	fdf
 CC 			= 	cc
 CFLAGS 		=   -Wall -Wextra -Werror
 MLXFLAGS 	= 	-lglfw -L "$(HOME)/homebrew/opt/glfw/lib"
@@ -30,12 +30,12 @@ SRC 		= main.c \
 SRC 		:= $(SRC:%=$(SRC_DIR)/%)
 OBJ 		= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT 		= ./libft/libft.a
-MLX42 		= ./MLX42/libmlx42.a
+MLX42 		= ./MLX42/build/libmlx42.a
 
 all: $(NAME)
 
 %.o: %.c
-	gcc $(CFLAGS) -c $^ -o $@
+	cc $(CFLAGS) -c $^ -o $@
 
 $(NAME): $(LIBFT) $(MLX42) $(OBJ)
 	@$(CC) $(LINK_FLAGS) $(OBJ) $(MLX42) $(LIBFT) -o $(NAME) $(MLXFLAGS)
@@ -52,7 +52,10 @@ $(LIBFT):
 $(MLX42):
 	@git submodule init MLX42
 	@git submodule update MLX42
-	@cd MLX42 && make
+	@cd MLX42 && cmake -B build && cmake --build build -j4
+
+test:
+	@echo $(MLX42)
 
 clean:
 	@rm -rf $(OBJ) $(OBJ_DIR)

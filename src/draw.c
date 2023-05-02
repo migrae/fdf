@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:21:20 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/24 10:48:46 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/02/09 09:31:57 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	draw_pixel(t_map *map, int x, int y, uint32_t color)
 
 t_coords	update_points(t_coords point, t_data *data)
 {
+	int	x;
+
 	point.x *= data->factor;
 	point.y *= data->factor;
 	point.z *= data->factor / data->map.z_height;
@@ -28,8 +30,9 @@ t_coords	update_points(t_coords point, t_data *data)
 	point = rotate_x(point, data->x_rotate);
 	point = rotate_y(point, data->y_rotate);
 	point = rotate_z(point, data->z_rotate);
+	x = point.x;
 	point.x = (point.x - point.y) * cos(0.5265);
-	point.y = (-point.z + point.x + point.y) * sin(0.5265);
+	point.y = (-point.z + (x + point.y)) * sin(0.5265);
 	point.x += WIDTH / 2 + data->offset_x;
 	point.y += HEIGHT / 2 + data->offset_y;
 	return (point);

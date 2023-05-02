@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 08:20:06 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/23 15:17:12 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:10:00 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	get_map_size(char *filename, t_data *data)
 		finish(data, 0);
 	}
 	line = get_next_line(fd);
+	if (!line)
+		finish(data, 0);
 	while (line)
 	{
 		data->map.height++;

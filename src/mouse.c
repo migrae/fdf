@@ -6,7 +6,7 @@
 /*   By: mgraefen <mgraefen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:03:29 by mgraefen          #+#    #+#             */
-/*   Updated: 2023/01/24 11:15:46 by mgraefen         ###   ########.fr       */
+/*   Updated: 2023/02/09 09:35:30 by mgraefen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	mouse_drag(t_data *data)
 	mlx_get_mouse_pos(data->map.mlx, &data->x, &data->y);
 	if (mlx_is_mouse_down(data->map.mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
-		data->z_rotate += (data->x - x) * 0.002;
+		data->z_rotate += (data->x - x) * 0.02;
 		data->x_rotate += (data->y - y) * 0.02;
 		data->y_rotate += (data->x - x) * 0.02;
 	}
